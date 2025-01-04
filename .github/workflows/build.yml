@@ -57,20 +57,20 @@ jobs:
             app/bin/ParsecVDisplay.exe
             app/bin/ParsecVDisplay.exe.config
 
-      - name: Sign the build
-        if: ${{ inputs.release }}
-        uses: signpath/github-action-submit-signing-request@v1
-        with:
-          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
-          organization-id: ${{ secrets.SIGNPATH_ORG_ID }}
-          project-slug: parsec-vdd
-          signing-policy-slug: release-signing
-          artifact-configuration-slug: zipped-exe
-          github-artifact-id: "${{steps.artifact-upload-step.outputs.artifact-id}}"
-          wait-for-completion: true
-          output-artifact-directory: bin
-          parameters: |
-            Version: "${{ github.ref_name }}"
+      # - name: Sign the build
+      #   if: ${{ inputs.release }}
+      #   uses: signpath/github-action-submit-signing-request@v1
+      #   with:
+      #     api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+      #     organization-id: ${{ secrets.SIGNPATH_ORG_ID }}
+      #     project-slug: parsec-vdd
+      #     signing-policy-slug: release-signing
+      #     artifact-configuration-slug: zipped-exe
+      #     github-artifact-id: "${{steps.artifact-upload-step.outputs.artifact-id}}"
+      #     wait-for-completion: true
+      #     output-artifact-directory: bin
+      #     parameters: |
+      #       Version: "${{ github.ref_name }}"
 
       - name: Fetch distro branch
         if: ${{ inputs.release }}
